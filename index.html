@@ -60,7 +60,7 @@ body {
 
 /* sections */
 .section {
-  padding:70px 20px;
+  padding:80px 20px;
 }
 
 /* text */
@@ -85,10 +85,10 @@ h2 { color:#b76e79; }
   box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
-/* buttons */
+/* button */
 .btn {
   display:inline-block;
-  margin-top:10px;
+  margin-top:15px;
   padding:12px 20px;
   background:#d4a373;
   color:white;
@@ -108,7 +108,7 @@ h2 { color:#b76e79; }
   to { transform:translateY(110vh) rotate(360deg); }
 }
 
-/* music button */
+/* music */
 .music-btn {
   position:fixed;
   top:20px;
@@ -118,6 +118,17 @@ h2 { color:#b76e79; }
   border:none;
   padding:10px 15px;
   border-radius:20px;
+}
+
+/* SAVE DATE BUTTON */
+.save-date {
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 22px;
+  background:#b76e79;
+  color:white;
+  border-radius:25px;
+  text-decoration:none;
 }
 </style>
 </head>
@@ -130,18 +141,26 @@ h2 { color:#b76e79; }
   <p class="open-text">Tap to open 💌</p>
 </div>
 
-<!-- MAIN -->
+<!-- MAIN WEBSITE -->
 <div id="mainContent">
 
 <button class="music-btn" onclick="playMusic()">🎶</button>
 
+<!-- MUSIC (FIXED) -->
 <audio id="music" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b6b63.mp3">
+  <source src="https://cdn.pixabay.com/audio/2023/03/07/audio_2b5a7c2b8b.mp3" type="audio/mpeg">
 </audio>
 
 <div class="section">
   <h2>You're Invited</h2>
   <h1>Hansi & Deneth</h1>
+
+  <!-- SAVE THE DATE BUTTON -->
+  <a class="save-date"
+     href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hansi+%26+Deneth+Wedding&dates=20260514T030000Z/20260514T110000Z&details=Wedding+Ceremony&location=Ramrich+Hotel,+Ekala"
+     target="_blank">
+     📅 Save the Date
+  </a>
 </div>
 
 <div class="section">
@@ -157,17 +176,7 @@ h2 { color:#b76e79; }
   </p>
 </div>
 
-<!-- 💛 YOUR MESSAGE -->
 <div class="section">
-  <p class="text">
-  As we begin our journey of love, trust, and togetherness,  
-  we would be honored to have you bless our special day with your presence.
-  </p>
-</div>
-
-<!-- DETAILS -->
-<div class="section">
-  <h2>Wedding Details</h2>
   <p class="text">
   📅 May 14, 2026<br>
   ⏰ 08:30 AM – 04:30 PM<br>
@@ -175,13 +184,15 @@ h2 { color:#b76e79; }
   📍 Ramrich Hotel, Ekala
   </p>
 
-  <a class="btn" target="_blank"
-  href="https://maps.google.com/?q=Ramrich+Hotel+Ekala">
-  📍 View Location
-  </a>
+  <a class="btn" href="https://maps.google.com/?q=Ramrich+Hotel+Ekala">📍 View Location</a>
 </div>
 
-<!-- RSVP -->
+<div class="section">
+  <div class="img-box">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
+  </div>
+</div>
+
 <div class="section">
   <h2>RSVP</h2>
   <p class="text">
@@ -190,24 +201,18 @@ h2 { color:#b76e79; }
   📞 0716117328
   </p>
 
-  <a class="btn" href="https://wa.me/94765761154">💬 WhatsApp RSVP</a>
-
-  <!-- SAVE DATE -->
-  <a class="btn" style="margin-left:10px;" target="_blank"
-  href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding%20of%20Hansi%20%26%20Deneth&dates=20260514T043000Z/20260514T113000Z&details=Wedding%20Ceremony%20-%20Hansi%20%26%20Deneth&location=Ramrich%20Hotel%2C%20Ekala">
-  📅 Save the Date
-  </a>
+  <a class="btn" href="https://wa.me/94765761154">💬 RSVP on WhatsApp</a>
 </div>
 
 </div>
 
 <script>
-
-/* open invite */
+// open envelope
 function openInvite(){
   document.getElementById("envelopeScreen").style.display="none";
   document.getElementById("mainContent").style.display="block";
 
+  // flowers
   setInterval(()=>{
     let f=document.createElement("div");
     f.className="flower";
@@ -219,11 +224,12 @@ function openInvite(){
   },500);
 }
 
-/* music */
+// music play
 function playMusic(){
-  document.getElementById("music").play();
+  let music=document.getElementById("music");
+  music.volume = 0.8;
+  music.play();
 }
-
 </script>
 
 </body>
