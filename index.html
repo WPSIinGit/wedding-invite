@@ -53,17 +53,15 @@ body {
   color:#b76e79;
 }
 
-/* MAIN CONTENT */
+/* MAIN */
 #mainContent {
   display:none;
 }
 
-/* sections */
 .section {
-  padding:80px 20px;
+  padding:70px 20px;
 }
 
-/* text */
 h1 {
   font-family:'Great Vibes', cursive;
   font-size:50px;
@@ -78,19 +76,28 @@ h2 { color:#b76e79; }
   line-height:1.8;
 }
 
-/* images */
 .img-box img {
   width:220px;
   border-radius:20px;
   box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
-/* button */
+/* buttons */
 .btn {
   display:inline-block;
   margin-top:15px;
   padding:12px 20px;
   background:#d4a373;
+  color:white;
+  border-radius:25px;
+  text-decoration:none;
+}
+
+.save-date {
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 22px;
+  background:#b76e79;
   color:white;
   border-radius:25px;
   text-decoration:none;
@@ -119,17 +126,6 @@ h2 { color:#b76e79; }
   padding:10px 15px;
   border-radius:20px;
 }
-
-/* SAVE DATE BUTTON */
-.save-date {
-  display:inline-block;
-  margin-top:20px;
-  padding:12px 22px;
-  background:#b76e79;
-  color:white;
-  border-radius:25px;
-  text-decoration:none;
-}
 </style>
 </head>
 
@@ -141,13 +137,14 @@ h2 { color:#b76e79; }
   <p class="open-text">Tap to open 💌</p>
 </div>
 
-<!-- MAIN WEBSITE -->
+<!-- MAIN -->
 <div id="mainContent">
 
 <button class="music-btn" onclick="playMusic()">🎶</button>
 
-<!-- MUSIC (FIXED) -->
-<audio id="music" loop>
+<!-- MUSIC FIXED (better + fallback) -->
+<audio id="music" loop playsinline>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b6b63.mp3" type="audio/mpeg">
   <source src="https://cdn.pixabay.com/audio/2023/03/07/audio_2b5a7c2b8b.mp3" type="audio/mpeg">
 </audio>
 
@@ -155,12 +152,9 @@ h2 { color:#b76e79; }
   <h2>You're Invited</h2>
   <h1>Hansi & Deneth</h1>
 
-  <!-- SAVE THE DATE BUTTON -->
-  <a class="save-date"
-     href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hansi+%26+Deneth+Wedding&dates=20260514T030000Z/20260514T110000Z&details=Wedding+Ceremony&location=Ramrich+Hotel,+Ekala"
-     target="_blank">
-     📅 Save the Date
-  </a>
+  <p class="text">
+  As we begin our journey of love, trust, and togetherness, we would be honored to have you bless our special day with your presence.
+  </p>
 </div>
 
 <div class="section">
@@ -193,6 +187,17 @@ h2 { color:#b76e79; }
   </div>
 </div>
 
+<!-- SAVE THE DATE (MOVED BEFORE RSVP) -->
+<div class="section">
+  <h2>Save the Date</h2>
+  <a class="save-date"
+     href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hansi+%26+Deneth+Wedding&dates=20260514T030000Z/20260514T110000Z&details=Wedding+Ceremony&location=Ramrich+Hotel,+Ekala"
+     target="_blank">
+     📅 Add to Calendar
+  </a>
+</div>
+
+<!-- RSVP -->
 <div class="section">
   <h2>RSVP</h2>
   <p class="text">
@@ -207,7 +212,6 @@ h2 { color:#b76e79; }
 </div>
 
 <script>
-// open envelope
 function openInvite(){
   document.getElementById("envelopeScreen").style.display="none";
   document.getElementById("mainContent").style.display="block";
@@ -222,12 +226,15 @@ function openInvite(){
     document.body.appendChild(f);
     setTimeout(()=>f.remove(),8000);
   },500);
+
+  // try autoplay music after user click (important fix)
+  let music = document.getElementById("music");
+  music.play().catch(()=>{});
 }
 
-// music play
 function playMusic(){
   let music=document.getElementById("music");
-  music.volume = 0.8;
+  music.volume=0.8;
   music.play();
 }
 </script>
