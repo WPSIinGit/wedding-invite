@@ -1,255 +1,230 @@
-<html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Invitation</title>
+
+<title>Hansi & Deneth Wedding</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 body {
-  margin: 0;
-  overflow: hidden;
-  font-family: Arial;
-  background: black;
+  margin:0;
+  font-family:'Playfair Display', serif;
+  background:#fff0f5;
+  text-align:center;
+  overflow-x:hidden;
 }
 
-/* 🎥 Background video */
-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: blur(6px) brightness(0.5);
-  z-index: -2;
+/* ENVELOPE SCREEN */
+#envelopeScreen {
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
 }
 
-/* 💛 Gold initials */
-.logo {
-  position: absolute;
-  top: 20px;
-  width: 100%;
-  text-align: center;
-  font-size: 40px;
-  font-weight: bold;
-  color: gold;
-  text-shadow: 0 0 20px gold;
-}
-
-/* 💌 3D Envelope */
 .envelope {
-  width: 320px;
-  height: 220px;
-  background: linear-gradient(145deg, #d4af37, #b8860b);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  border-radius: 10px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-  transition: 1s;
+  width:280px;
+  height:180px;
+  background:#f8cdda;
+  border-radius:12px;
+  position:relative;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
 .envelope:before {
-  content: "";
-  position: absolute;
-  border-left: 160px solid transparent;
-  border-right: 160px solid transparent;
-  border-top: 110px solid #f5d76e;
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  border-left:140px solid transparent;
+  border-right:140px solid transparent;
+  border-bottom:90px solid #f3a6b5;
 }
 
-/* 💌 Envelope open animation */
-.envelope.open {
-  transform: translate(-50%, -150%) rotateX(180deg);
-  opacity: 0;
+.open-text {
+  margin-top:20px;
+  font-family:'Great Vibes', cursive;
+  font-size:24px;
+  color:#b76e79;
 }
 
-/* 💛 Card */
-.card {
-  position: absolute;
-  width: 90%;
-  max-width: 520px;
-  background: white;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 60%);
-  padding: 25px;
-  border-radius: 14px;
-  text-align: center;
-  opacity: 0;
-  transition: 1.2s;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+/* MAIN CONTENT */
+#mainContent {
+  display:none;
 }
 
-.card.show {
-  transform: translate(-50%, -50%);
-  opacity: 1;
+/* sections */
+.section {
+  padding:70px 20px;
 }
 
+/* text */
 h1 {
-  color: #b8860b;
+  font-family:'Great Vibes', cursive;
+  font-size:50px;
+  color:#d4a373;
+}
+
+h2 { color:#b76e79; }
+
+.text {
+  font-size:18px;
+  color:#5e4b44;
+  line-height:1.8;
+}
+
+/* images */
+.img-box img {
+  width:220px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
 /* buttons */
 .btn {
-  margin: 5px;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
+  display:inline-block;
+  margin-top:10px;
+  padding:12px 20px;
+  background:#d4a373;
+  color:white;
+  border-radius:25px;
+  text-decoration:none;
 }
 
-.rsvp { background:#25D366; color:white; }
-.save { background:gold; }
-
-/* 🌹 petals */
-.petal {
-  position: absolute;
-  top: -10px;
-  font-size: 20px;
-  animation: fall linear infinite;
+/* flowers */
+.flower {
+  position:fixed;
+  top:-50px;
+  font-size:20px;
+  animation:fall linear infinite;
 }
 
 @keyframes fall {
-  to { transform: translateY(110vh) rotate(360deg); }
+  to { transform:translateY(110vh) rotate(360deg); }
 }
 
-/* ✨ sparkles */
-.sparkle {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  background: gold;
-  border-radius: 50%;
-  animation: sparkle 2s linear infinite;
-}
-
-@keyframes sparkle {
-  0% {opacity:0; transform:scale(0);}
-  50% {opacity:1;}
-  100% {opacity:0; transform:scale(2);}
-}
-
-/* 🎵 music button */
-.musicBtn {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  padding: 10px;
-  background: gold;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
+/* music button */
+.music-btn {
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:#d4a373;
+  color:white;
+  border:none;
+  padding:10px 15px;
+  border-radius:20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎥 Background Video -->
-<video autoplay muted loop>
-  <source src="https://cdn.pixabay.com/video/2019/07/21/25428-349658768_large.mp4" type="video/mp4">
-</video>
+<!-- ENVELOPE -->
+<div id="envelopeScreen">
+  <div class="envelope" onclick="openInvite()"></div>
+  <p class="open-text">Tap to open 💌</p>
+</div>
 
-<!-- 💛 Logo -->
-<div class="logo">D ❤️ H</div>
+<!-- MAIN -->
+<div id="mainContent">
 
-<!-- 💌 Envelope -->
-<div class="envelope" onclick="openInvite()"></div>
+<button class="music-btn" onclick="playMusic()">🎶</button>
 
-<!-- 💛 Card -->
-<div class="card" id="card">
-  <h1>You + Me = Forever 💛</h1>
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b6b63.mp3">
+</audio>
 
-  <p><b>[Groom Name] & [Bride Name]</b></p>
+<div class="section">
+  <h2>You're Invited</h2>
+  <h1>Hansi & Deneth</h1>
+</div>
 
-  <p>
+<div class="section">
+  <div class="img-box">
+    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486">
+  </div>
+</div>
+
+<div class="section">
+  <p class="text">
+  Together with their families,<br>
+  we invite you to celebrate our special day 💕
+  </p>
+</div>
+
+<!-- 💛 YOUR MESSAGE -->
+<div class="section">
+  <p class="text">
   As we begin our journey of love, trust, and togetherness,  
   we would be honored to have you bless our special day with your presence.
   </p>
-
-  <p>
-  📅 Date: [Your Date] <br>
-  🕒 Time: [Your Time] <br>
-  📍 Venue: [Your Venue]
-  </p>
-
-  <button class="btn rsvp" onclick="rsvp()">WhatsApp RSVP</button>
-  <button class="btn save" onclick="saveDate()">Save Date</button>
 </div>
 
-<!-- 🎵 Music -->
-<audio id="music" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8b7b8d2b1.mp3">
-</audio>
+<!-- DETAILS -->
+<div class="section">
+  <h2>Wedding Details</h2>
+  <p class="text">
+  📅 May 14, 2026<br>
+  ⏰ 08:30 AM – 04:30 PM<br>
+  💐 Poruwa Ceremony – 09:00 AM<br>
+  📍 Ramrich Hotel, Ekala
+  </p>
 
-<!-- 🎵 Music Button -->
-<button class="musicBtn" onclick="toggleMusic()">🎵</button>
+  <a class="btn" target="_blank"
+  href="https://maps.google.com/?q=Ramrich+Hotel+Ekala">
+  📍 View Location
+  </a>
+</div>
+
+<!-- RSVP -->
+<div class="section">
+  <h2>RSVP</h2>
+  <p class="text">
+  Kindly respond before 27th April<br><br>
+  📞 0765761154<br>
+  📞 0716117328
+  </p>
+
+  <a class="btn" href="https://wa.me/94765761154">💬 WhatsApp RSVP</a>
+
+  <!-- SAVE DATE -->
+  <a class="btn" style="margin-left:10px;" target="_blank"
+  href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding%20of%20Hansi%20%26%20Deneth&dates=20260514T043000Z/20260514T113000Z&details=Wedding%20Ceremony%20-%20Hansi%20%26%20Deneth&location=Ramrich%20Hotel%2C%20Ekala">
+  📅 Save the Date
+  </a>
+</div>
+
+</div>
 
 <script>
 
-let musicStarted = false;
-
-/* 💌 open invite */
+/* open invite */
 function openInvite(){
-  document.querySelector(".envelope").classList.add("open");
-  document.getElementById("card").classList.add("show");
+  document.getElementById("envelopeScreen").style.display="none";
+  document.getElementById("mainContent").style.display="block";
 
-  if(!musicStarted){
-    document.getElementById("music").play();
-    musicStarted = true;
-  }
-
-  startEffects();
+  setInterval(()=>{
+    let f=document.createElement("div");
+    f.className="flower";
+    f.innerHTML="🌸";
+    f.style.left=Math.random()*100+"vw";
+    f.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),8000);
+  },500);
 }
 
-/* 🎵 music control */
-function toggleMusic(){
-  let m = document.getElementById("music");
-  if(m.paused) m.play();
-  else m.pause();
-}
-
-/* 💬 WhatsApp */
-function rsvp(){
-  window.open("https://wa.me/947XXXXXXXX","_blank");
-}
-
-/* 📅 Save Date */
-function saveDate(){
-  window.open("https://calendar.google.com","_blank");
-}
-
-/* 🌹 petals */
-function createPetal(){
-  const p = document.createElement("div");
-  p.classList.add("petal");
-  p.innerHTML = "🌹";
-  p.style.left = Math.random()*window.innerWidth+"px";
-  p.style.animationDuration = (3+Math.random()*5)+"s";
-  document.body.appendChild(p);
-  setTimeout(()=>p.remove(),8000);
-}
-
-/* ✨ sparkles */
-function createSparkle(){
-  const s = document.createElement("div");
-  s.classList.add("sparkle");
-  s.style.left = Math.random()*window.innerWidth+"px";
-  s.style.top = Math.random()*window.innerHeight+"px";
-  document.body.appendChild(s);
-  setTimeout(()=>s.remove(),2000);
-}
-
-function startEffects(){
-  setInterval(createPetal,200);
-  setInterval(createSparkle,300);
+/* music */
+function playMusic(){
+  document.getElementById("music").play();
 }
 
 </script>
 
 </body>
 </html>
-
