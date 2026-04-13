@@ -115,7 +115,7 @@ h2 { color:#b76e79; }
   to { transform:translateY(110vh) rotate(360deg); }
 }
 
-/* music */
+/* music button */
 .music-btn {
   position:fixed;
   top:20px;
@@ -137,13 +137,13 @@ h2 { color:#b76e79; }
   <p class="open-text">Tap to open 💌</p>
 </div>
 
-<!-- MAIN -->
+<!-- MAIN CONTENT -->
 <div id="mainContent">
 
 <button class="music-btn" onclick="playMusic()">🎶</button>
 
-<!-- MUSIC FIXED (better + fallback) -->
-<audio id="music" loop>
+<!-- 🔊 IMPORTANT: CHANGE music.mp3 to your uploaded file -->
+<audio id="music" loop playsinline>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -186,11 +186,11 @@ h2 { color:#b76e79; }
   </div>
 </div>
 
-<!-- SAVE THE DATE (MOVED BEFORE RSVP) -->
+<!-- SAVE THE DATE -->
 <div class="section">
   <h2>Save the Date</h2>
   <a class="save-date"
-     href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hansi+%26+Deneth+Wedding&dates=20260514T030000Z/20260514T110000Z&details=Wedding+Ceremony&location=Ramrich+Hotel,+Ekala"
+     href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hansi+%26+Deneth+Wedding&dates=20260514T030000Z/20260514T110000Z&location=Ramrich+Hotel+Ekala"
      target="_blank">
      📅 Add to Calendar
   </a>
@@ -215,12 +215,12 @@ function openInvite(){
   document.getElementById("envelopeScreen").style.display="none";
   document.getElementById("mainContent").style.display="block";
 
-  // play music after user tap
+  // 🎵 PLAY MUSIC AFTER TAP (FIXED)
   let music = document.getElementById("music");
-  music.volume = 0.7;
-  music.play();
+  music.volume = 0.6;
+  music.play().catch(()=>{});
 
-  // flowers
+  // 🌸 FLOWERS
   setInterval(()=>{
     let f=document.createElement("div");
     f.className="flower";
@@ -232,11 +232,7 @@ function openInvite(){
   },500);
 }
 
-  // try autoplay music after user click (important fix)
-  let music = document.getElementById("music");
-  music.play().catch(()=>{});
-}
-
+// 🎶 BUTTON
 function playMusic(){
   let music = document.getElementById("music");
   music.play();
