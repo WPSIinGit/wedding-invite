@@ -143,9 +143,8 @@ h2 { color:#b76e79; }
 <button class="music-btn" onclick="playMusic()">🎶</button>
 
 <!-- MUSIC FIXED (better + fallback) -->
-<audio id="music" loop playsinline>
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b6b63.mp3" type="audio/mpeg">
-  <source src="https://cdn.pixabay.com/audio/2023/03/07/audio_2b5a7c2b8b.mp3" type="audio/mpeg">
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <div class="section">
@@ -216,6 +215,11 @@ function openInvite(){
   document.getElementById("envelopeScreen").style.display="none";
   document.getElementById("mainContent").style.display="block";
 
+  // play music after user tap
+  let music = document.getElementById("music");
+  music.volume = 0.7;
+  music.play();
+
   // flowers
   setInterval(()=>{
     let f=document.createElement("div");
@@ -226,6 +230,7 @@ function openInvite(){
     document.body.appendChild(f);
     setTimeout(()=>f.remove(),8000);
   },500);
+}
 
   // try autoplay music after user click (important fix)
   let music = document.getElementById("music");
@@ -233,8 +238,7 @@ function openInvite(){
 }
 
 function playMusic(){
-  let music=document.getElementById("music");
-  music.volume=0.8;
+  let music = document.getElementById("music");
   music.play();
 }
 </script>
