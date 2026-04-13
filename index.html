@@ -17,7 +17,7 @@ body {
   overflow-x:hidden;
 }
 
-/* ENVELOPE SCREEN */
+/* ENVELOPE */
 #envelopeScreen {
   height:100vh;
   display:flex;
@@ -68,7 +68,9 @@ h1 {
   color:#d4a373;
 }
 
-h2 { color:#b76e79; }
+h2 {
+  color:#b76e79;
+}
 
 .text {
   font-size:18px;
@@ -76,6 +78,7 @@ h2 { color:#b76e79; }
   line-height:1.8;
 }
 
+/* images */
 .img-box img {
   width:220px;
   border-radius:20px;
@@ -103,6 +106,18 @@ h2 { color:#b76e79; }
   text-decoration:none;
 }
 
+/* music button */
+.music-btn {
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:#d4a373;
+  color:white;
+  border:none;
+  padding:10px 15px;
+  border-radius:20px;
+}
+
 /* flowers */
 .flower {
   position:fixed;
@@ -114,39 +129,28 @@ h2 { color:#b76e79; }
 @keyframes fall {
   to { transform:translateY(110vh) rotate(360deg); }
 }
-
-/* music */
-.music-btn {
-  position:fixed;
-  top:20px;
-  right:20px;
-  background:#d4a373;
-  color:white;
-  border:none;
-  padding:10px 15px;
-  border-radius:20px;
-}
 </style>
 </head>
 
 <body>
 
-<!-- ENVELOPE -->
+<!-- 💌 ENVELOPE -->
 <div id="envelopeScreen">
-  <div class="envelope" onclick="openInvite()"></div>
+  <div class="envelope" id="envelope"></div>
   <p class="open-text">Tap to open 💌</p>
 </div>
 
-<!-- MAIN -->
+<!-- 💍 MAIN CONTENT -->
 <div id="mainContent">
 
 <button class="music-btn" onclick="playMusic()">🎶</button>
 
-<!-- ✅ FIXED MUSIC -->
+<!-- 🎵 MUSIC (UPLOAD music.mp3 IN GITHUB) -->
 <audio id="music" loop playsinline>
   <source src="./music.mp3" type="audio/mpeg">
 </audio>
 
+<!-- TITLE -->
 <div class="section">
   <h2>You're Invited</h2>
   <h1>Hansi & Deneth</h1>
@@ -156,12 +160,14 @@ h2 { color:#b76e79; }
   </p>
 </div>
 
+<!-- IMAGE 1 -->
 <div class="section">
   <div class="img-box">
     <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486">
   </div>
 </div>
 
+<!-- INVITE TEXT -->
 <div class="section">
   <p class="text">
   Together with their families,<br>
@@ -169,6 +175,7 @@ h2 { color:#b76e79; }
   </p>
 </div>
 
+<!-- DETAILS -->
 <div class="section">
   <p class="text">
   📅 May 14, 2026<br>
@@ -180,6 +187,7 @@ h2 { color:#b76e79; }
   <a class="btn" href="https://maps.google.com/?q=Ramrich+Hotel+Ekala">📍 View Location</a>
 </div>
 
+<!-- IMAGE 2 -->
 <div class="section">
   <div class="img-box">
     <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
@@ -211,7 +219,8 @@ h2 { color:#b76e79; }
 </div>
 
 <script>
-function openInvite(){
+document.getElementById("envelope").addEventListener("click", function(){
+
   document.getElementById("envelopeScreen").style.display="none";
   document.getElementById("mainContent").style.display="block";
 
@@ -226,18 +235,20 @@ function openInvite(){
     setTimeout(()=>f.remove(),8000);
   },500);
 
-  // 🎵 FIXED MUSIC PLAY
+  // 🎵 music autoplay after tap
   let music = document.getElementById("music");
   if(music){
     music.volume = 0.6;
+    music.currentTime = 0;
     music.play().catch(()=>{});
   }
-}
 
+});
+
+// 🎶 manual music button
 function playMusic(){
-  let music=document.getElementById("music");
+  let music = document.getElementById("music");
   if(music){
-    music.volume = 0.8;
     music.play();
   }
 }
