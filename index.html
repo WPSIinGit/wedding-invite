@@ -1,1 +1,258 @@
+<html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Hansi & Deneth Wedding</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0;
+  font-family:'Playfair Display', serif;
+  background:#fff0f5;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+/* ENVELOPE */
+#envelopeScreen {
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.envelope {
+  width:280px;
+  height:180px;
+  background:#f8cdda;
+  border-radius:12px;
+  position:relative;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.envelope:before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  border-left:140px solid transparent;
+  border-right:140px solid transparent;
+  border-bottom:90px solid #f3a6b5;
+}
+
+.open-text {
+  margin-top:20px;
+  font-family:'Great Vibes', cursive;
+  font-size:24px;
+  color:#b76e79;
+}
+
+/* MAIN */
+#mainContent {
+  display:none;
+}
+
+.section {
+  padding:70px 20px;
+}
+
+h1 {
+  font-family:'Great Vibes', cursive;
+  font-size:50px;
+  color:#d4a373;
+}
+
+h2 {
+  color:#b76e79;
+}
+
+.text {
+  font-size:18px;
+  color:#5e4b44;
+  line-height:1.8;
+}
+
+/* images */
+.img-box img {
+  width:220px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* buttons */
+.btn {
+  display:inline-block;
+  margin-top:15px;
+  padding:12px 20px;
+  background:#d4a373;
+  color:white;
+  border-radius:25px;
+  text-decoration:none;
+}
+
+.save-date {
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 22px;
+  background:#b76e79;
+  color:white;
+  border-radius:25px;
+  text-decoration:none;
+}
+
+/* music button */
+.music-btn {
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:#d4a373;
+  color:white;
+  border:none;
+  padding:10px 15px;
+  border-radius:20px;
+}
+
+/* flowers */
+.flower {
+  position:fixed;
+  top:-50px;
+  font-size:20px;
+  animation:fall linear infinite;
+}
+
+@keyframes fall {
+  to { transform:translateY(110vh) rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 💌 ENVELOPE -->
+<div id="envelopeScreen">
+  <div class="envelope" id="envelope"></div>
+  <p class="open-text">Tap to open 💌</p>
+</div>
+
+<!-- 💍 MAIN CONTENT -->
+<div id="mainContent">
+
+<button class="music-btn" onclick="playMusic()">🎶</button>
+
+<!-- 🎵 MUSIC (UPLOAD music.mp3 IN GITHUB) -->
+<audio id="music" loop playsinline>
+  <source src="./music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- TITLE -->
+<div class="section">
+  <h2>You're Invited</h2>
+  <h1>Hansi & Deneth</h1>
+
+  <p class="text">
+  As we begin our journey of love, trust, and togetherness, we would be honored to have you bless our special day with your presence.
+  </p>
+</div>
+
+<!-- IMAGE 1 -->
+<div class="section">
+  <div class="img-box">
+    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486">
+  </div>
+</div>
+
+<!-- INVITE TEXT -->
+<div class="section">
+  <p class="text">
+  Together with their families,<br>
+  we invite you to celebrate our special day 💕
+  </p>
+</div>
+
+<!-- DETAILS -->
+<div class="section">
+  <p class="text">
+  📅 May 14, 2026<br>
+  ⏰ 08:30 AM – 04:30 PM<br>
+  💐 Poruwa Ceremony – 09:00 AM<br>
+  📍 Ramrich Hotel, Ekala
+  </p>
+
+  <a class="btn" href="https://maps.google.com/?q=Ramrich+Hotel+Ekala">📍 View Location</a>
+</div>
+
+<!-- IMAGE 2 -->
+<div class="section">
+  <div class="img-box">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
+  </div>
+</div>
+
+<!-- SAVE THE DATE -->
+<div class="section">
+  <h2>Save the Date</h2>
+  <a class="save-date"
+     href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Hansi+%26+Deneth+Wedding&dates=20260514T030000Z/20260514T110000Z&details=Wedding+Ceremony&location=Ramrich+Hotel,+Ekala"
+     target="_blank">
+     📅 Add to Calendar
+  </a>
+</div>
+
+<!-- RSVP -->
+<div class="section">
+  <h2>RSVP</h2>
+  <p class="text">
+  Kindly respond before 27th April<br><br>
+  📞 0765761154<br>
+  📞 0716117328
+  </p>
+
+  <a class="btn" href="https://wa.me/94765761154">💬 RSVP on WhatsApp</a>
+</div>
+
+</div>
+
+<script>
+document.getElementById("envelope").addEventListener("click", function(){
+
+  document.getElementById("envelopeScreen").style.display="none";
+  document.getElementById("mainContent").style.display="block";
+
+  // 🌸 flowers
+  setInterval(()=>{
+    let f=document.createElement("div");
+    f.className="flower";
+    f.innerHTML="🌸";
+    f.style.left=Math.random()*100+"vw";
+    f.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),8000);
+  },500);
+
+  // 🎵 music autoplay after tap
+  let music = document.getElementById("music");
+  if(music){
+    music.volume = 0.6;
+    music.currentTime = 0;
+    music.play().catch(()=>{});
+  }
+
+});
+
+// 🎶 manual music button
+function playMusic(){
+  let music = document.getElementById("music");
+  if(music){
+    music.play();
+  }
+}
+</script>
+
+</body>
+</html>
