@@ -143,6 +143,12 @@ h2 {
 <!-- 💍 MAIN CONTENT -->
 <div id="mainContent">
 
+  <!-- Floral Corners -->
+<div class="corner top-left">❤️❤️</div>
+<div class="corner top-right">❤️❤️</div>
+<div class="corner bottom-left">❤️❤️</div>
+<div class="corner bottom-right">❤️❤️</div>
+
 <button class="music-btn" onclick="playMusic()">🎶</button>
 
 <!-- 🎵 MUSIC (UPLOAD music.mp3 IN GITHUB) -->
@@ -228,7 +234,7 @@ document.getElementById("envelope").addEventListener("click", function(){
   setInterval(()=>{
     let f=document.createElement("div");
     f.className="flower";
-    f.innerHTML="🌸";
+    f.innerHTML="❤️";
     f.style.left=Math.random()*100+"vw";
     f.style.animationDuration=(5+Math.random()*5)+"s";
     document.body.appendChild(f);
